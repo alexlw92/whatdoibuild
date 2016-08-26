@@ -1,0 +1,17 @@
+extends layout
+
+block content
+	h1 What the fuck do I build????
+	if (typeof(champion) !== 'undefined')
+	h3 You're playing #{champion}?
+	if (typeof(startingItem) !== 'undefined')
+		p Start with #{startingItem}
+	if (typeof(finalItems) !== 'undefined')
+		p Core Items
+			ul
+				each item in finalItems
+					li= item
+	p Select a Champion
+	form(action="/lookup" method="/get")
+		input(type="text" name="champion")
+		input(type="submit")

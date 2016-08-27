@@ -36,14 +36,20 @@ router.get('/lookup', function(req, res, next) {
 						// get the starting items
 						request({url: startingUrl, json: true
 						}, function (error, response, startingItems) {
+							console.log(startingItems)
 							if (!error && response.statusCode === 200) {
-								startingFinal = [startingItems[0].items[0], allItems.data[startingItems[0].items[0]].name]
+								startingFinal = []
+								startingItems[0].items.forEach(function(value, index)
+								{
+									startingFinal.push([value, allItems.data[value].name])
+								})
+								
 								finishedFinal = []
 								finishedItems[0].items.forEach(function(value, index){
 									finishedFinal.push([value, allItems.data[value].name])
 								})
 
- 								console.log(finishedFinal) // Print the json response
+ 								console.log(startingFinal) // Print the json response
 								res.render('lookup', { 
 									title: 'Express', 
 									startingItem: startingFinal, 

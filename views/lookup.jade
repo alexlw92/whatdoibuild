@@ -11,11 +11,13 @@ block bodyContent
 			div(class="row")
 				h3 Start with
 			div(class="row")
-				div(class="col-md-1")
-					a(href="#" class="thumbnail" data-toggle="tooltip" title=startingItem[1])
-						img(src="http://ddragon.leagueoflegends.com/cdn/6.17.1/img/item/"+startingItem[0]+".png")
+				each item in startingItem
+					div(class="col-md-1")
+						a(href="#" class="thumbnail" data-toggle="tooltip" title=item[1])
+							img(src="http://ddragon.leagueoflegends.com/cdn/6.17.1/img/item/"+item[0]+".png")
 		if (typeof(finalItems) !== 'undefined')
-			h3 Finish with
+			div(class="row")
+				h3 Finish with
 			div(class="row")
 				each item in finalItems
 					div(class="col-md-1")

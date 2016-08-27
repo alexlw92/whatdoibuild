@@ -1,20 +1,24 @@
 extends layout
 
 block bodyContent
-	h1 What the fuck do I build????
-	if (typeof(champion) !== 'undefined')
-		h3 You're playing #{champion}?
-	if (typeof(startingItem) !== 'undefined')
-		p Start with #{startingItem}
-	if (typeof(finalItems) !== 'undefined')
-		p Core Items
-			ul
+	div(class="container")
+		div(class="row")
+			h1 What the fuck do I build????
+		if (typeof(champion) !== 'undefined')
+			div(class="row")
+				h2 You're playing #{champion}?
+		if (typeof(startingItem) !== 'undefined')
+			div(class="row")
+				h3 Start with
+			div(class="row")
+				div(class="col-md-1")
+					a(href="#" class="thumbnail" data-toggle="tooltip" title=startingItem[1])
+						img(src="http://ddragon.leagueoflegends.com/cdn/6.17.1/img/item/"+startingItem[0]+".png")
+		if (typeof(finalItems) !== 'undefined')
+			h3 Finish with
+			div(class="row")
 				each item in finalItems
-					li
-						=item[1]
-			each item in finalItems
-				img(src="http://ddragon.leagueoflegends.com/cdn/6.17.1/img/item/"+item[0]+".png")
-	p Select a Champion
-	form(action="/" method="/get")
-		input(type="text" name="champion")
-		input(type="submit")
+					div(class="col-md-1")
+						a(href="#" class="thumbnail" data-toggle="tooltip" title=item[1])
+							img(src="http://ddragon.leagueoflegends.com/cdn/6.17.1/img/item/"+item[0]+".png")
+		include ./search.jade

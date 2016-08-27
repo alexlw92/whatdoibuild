@@ -4,9 +4,11 @@ var request = require("request")
 
 
 /* GET home page. */
-
-
 router.get('/', function(req, res, next) {
+	res.render('index', { title: 'Express' });
+});
+
+router.get('/lookup', function(req, res, next) {
 	if (req.query.champion == null) {
 		res.render('lookup', { title: 'Express' });
 	}
@@ -35,7 +37,7 @@ router.get('/', function(req, res, next) {
 						request({url: startingUrl, json: true
 						}, function (error, response, startingItems) {
 							if (!error && response.statusCode === 200) {
-								startingFinal = allItems.data[startingItems[0].items[0]].name
+								startingFinal = [startingItems[0].items[0], allItems.data[startingItems[0].items[0]].name]
 								finishedFinal = []
 								finishedItems[0].items.forEach(function(value, index){
 									finishedFinal.push([value, allItems.data[value].name])

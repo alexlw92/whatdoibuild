@@ -1,6 +1,6 @@
 extends layout
 
-block content
+block bodyContent
 	h1 What the fuck do I build????
 	if (typeof(champion) !== 'undefined')
 		h3 You're playing #{champion}?
@@ -10,7 +10,10 @@ block content
 		p Core Items
 			ul
 				each item in finalItems
-					li= item
+					li
+						=item[1]
+			each item in finalItems
+				img(src="http://ddragon.leagueoflegends.com/cdn/6.17.1/img/item/"+item[0]+".png")
 	p Select a Champion
 	form(action="/" method="/get")
 		input(type="text" name="champion")

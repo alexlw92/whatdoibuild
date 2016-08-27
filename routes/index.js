@@ -12,6 +12,7 @@ router.get('/', function(req, res, next) {
 	}
 
 	else {
+		console.log(req.query)
 		champion = req.query.champion
 
 		var startingUrl = "http://api.champion.gg/champion/"+champion+"/items/starters/mostPopular?api_key=6073c69232cbf21a6b565f6dbadf23e6"
@@ -37,14 +38,15 @@ router.get('/', function(req, res, next) {
 								startingFinal = allItems.data[startingItems[0].items[0]].name
 								finishedFinal = []
 								finishedItems[0].items.forEach(function(value, index){
-									finishedFinal.push(allItems.data[value].name)
+									finishedFinal.push([value, allItems.data[value].name])
 								})
 
  								console.log(finishedFinal) // Print the json response
 								res.render('lookup', { 
 									title: 'Express', 
 									startingItem: startingFinal, 
-									finalItems: finishedFinal});
+									finalItems: finishedFinal,
+									champion: champion});
 							}
 							else
 								return

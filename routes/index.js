@@ -9,7 +9,7 @@ router.get('/', function(req, res, next) {
 });
 
 router.get('/riot.txt', function(req, res, next) {
-	res.render('riot', { title: 'Express' });
+	res.sendfile('riot.txt');
 });
 
 router.get('/lookup', function(req, res, next) {

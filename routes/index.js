@@ -8,6 +8,10 @@ router.get('/', function(req, res, next) {
 	res.render('index', { title: 'Express' });
 });
 
+router.get('/riot.txt', function(req, res, next) {
+	res.render('riot', { title: 'Express' });
+});
+
 router.get('/lookup', function(req, res, next) {
 	if (req.query.champion == null) {
 		res.render('lookup', { title: 'Express' });
